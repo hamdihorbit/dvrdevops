@@ -15,13 +15,16 @@ jobs:
         run: npm install
       
       - name: Deploy to AWS EC2
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.10  # Or latest stable tag
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22  # Add if non-default
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}  # If key is encrypted
           source: "./"
           target: "/var/www/DVR DEVOPS"
+          overwrite: true  # Optional: overwrite existing files
       
       - name: Restart PM2 application
         uses: appleboy/ssh-action@master
