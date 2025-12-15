@@ -30,6 +30,6 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/DVR DEVOPS 
+            cd "/var/www/DVR DEVOPS" 
             npm install
             pm2 reload my-app
